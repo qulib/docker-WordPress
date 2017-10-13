@@ -1,0 +1,13 @@
+{
+  "name": "MyProject",
+  "version": "0.0.1",
+  "description": "My project description",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quladmin/project-boilerplate.git"
+  },
+  "author": "First Last",
+  "devDependencies": {
+    "gulp": "^3.8.11"
+  }
+}
