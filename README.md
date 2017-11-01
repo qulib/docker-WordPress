@@ -17,7 +17,3 @@ Here are the steps to use this project to develop a WordPress theme:
 4. In the `app/themes` folder, clone or copy your theme code
 5. In the WordPress admin interface, switch to your new theme
 6. When you're done, it's safe to run `docker-compose down` without losing your work
-
-TODO
-----
-1. And gulp integration for SASS compilation, browserSync, JS minification, etc.
