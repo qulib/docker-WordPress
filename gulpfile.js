@@ -1,4 +1,5 @@
-var themename = 'qul-wp-starter';
+var themename = 'theme-name-goes-here';
+var themedir = 'app/wp-content/themes';
 
 var gulp = require('gulp'),
 
@@ -15,7 +16,7 @@ var gulp = require('gulp'),
 	newer = require('gulp-newer'),
 
 	// Name of working theme folder
-	root = 'app/themes/' + themename + '/',
+	root = themedir + themename + '/',
 	scss = root + 'sass/',
 	js = root + 'js/',
 	img = root + 'images/',
@@ -58,7 +59,6 @@ gulp.task('watch', function() {
 	browserSync.init({
 		open: 'external',
 		proxy: 'localhost',
-		// port: 8000
 	});
 	gulp.watch([root + '**/*.css', root + '**/*.scss' ], ['css']);
 	gulp.watch(js + '**/*.js', ['javascript']);
