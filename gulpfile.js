@@ -1,26 +1,20 @@
-var themename = 'theme-name-goes-here';
-var themedir = 'app/wp-content/themes';
+var gulp = require('gulp');
+var autoprefixer = require('autoprefixer');
+var browserSync = require('browser-sync').create();
+var image = require('gulp-image'); //external dependencies, see: https://www.npmjs.com/package/gulp-image
+var newer = require('gulp-newer');
+var postcss = require('gulp-postcss');
+var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
 
-var gulp = require('gulp'),
-
-	// Prepare and optimize code
-	autoprefixer = require('autoprefixer'),
-	browserSync = require('browser-sync').create(),
-	image = require('gulp-image'),
-	jshint = require('gulp-jshint'),
-	postcss = require('gulp-postcss'),
-	sass = require('gulp-sass'),
-	sourcemaps = require('gulp-sourcemaps'),
-
-	// Only work with new or updated files
-	newer = require('gulp-newer'),
-
-	// Name of working theme folder
-	root = themedir + themename + '/',
-	scss = root + 'sass/',
-	js = root + 'js/',
-	img = root + 'images/',
-	languages = root + 'languages/';
+// Working folders
+var themename = 'twentyfifteen-PC';
+var themedir = 'app/wp-content/themes/';
+var root = themedir + themename + '/';
+var img = root + 'img/';
+var js = root + 'js/';
+var languages = root + 'languages/';
+var scss = root + 'sass/';
 
 // CSS via Sass and Autoprefixer
 gulp.task('css', function() {
@@ -40,7 +34,7 @@ gulp.task('css', function() {
 
 // Optimize images through gulp-image
 gulp.task('images', function() {
-	return gulp.src(img + 'RAW/**/*.{jpg,JPG,png}')
+	return gulp.src(img + 'raw/**/*.+(png|jpg|gif|svg)')
 	.pipe(newer(img))
 	.pipe(image())
 	.pipe(gulp.dest(img));
@@ -49,8 +43,6 @@ gulp.task('images', function() {
 // JavaScript
 gulp.task('javascript', function() {
 	return gulp.src([js + '*.js'])
-	.pipe(jshint())
-	.pipe(jshint.reporter('default'))
 	.pipe(gulp.dest(js));
 });
 
@@ -62,7 +54,7 @@ gulp.task('watch', function() {
 	});
 	gulp.watch([root + '**/*.css', root + '**/*.scss' ], ['css']);
 	gulp.watch(js + '**/*.js', ['javascript']);
-	gulp.watch(img + 'RAW/**/*.{jpg,JPG,png}', ['images']);
+	gulp.watch(img + 'raw/**/*.+(png|jpg|gif|svg)', ['images']);
 	gulp.watch(root + '**/*').on('change', browserSync.reload);
 });
 
