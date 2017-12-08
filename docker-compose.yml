@@ -1,14 +1,14 @@
-version: '3'
+version: "3"
 
 services:
 
   db:
     image: mysql:5.7
     volumes:
-      - "./data:/var/lib/mysql"
-    restart: always
+      - "./data:/var/lib/mysql:cache"
     ports:
       - "3306:3306"
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
       MYSQL_DATABASE: wordpress
@@ -16,11 +16,11 @@ services:
       MYSQL_PASSWORD: wordpress
 
   wordpress:
-    build: ./dev/wordpress
+    image: wordpress
     depends_on:
       - db
     volumes:
-      - "./app:/var/www/html/"
+      - "./app:/var/www/html/:cache"
     ports:
       - "80:80"
     restart: always
