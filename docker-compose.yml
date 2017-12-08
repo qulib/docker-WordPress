@@ -5,7 +5,7 @@ services:
   db:
     image: mysql:5.7
     volumes:
-      - "./data:/var/lib/mysql:cache"
+      - "./data:/var/lib/mysql:cached"
     ports:
       - "3306:3306"
     restart: always
@@ -20,7 +20,7 @@ services:
     depends_on:
       - db
     volumes:
-      - "./app:/var/www/html/:cache"
+      - "./app:/var/www/html/:cached"
     ports:
       - "80:80"
     restart: always
