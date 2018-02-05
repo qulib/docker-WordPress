@@ -5,10 +5,9 @@ services:
   db:
     image: mysql:5.7
     volumes:
-      - "./data:/var/lib/mysql:cached"
+      - "./data:/var/lib/mysql"
     ports:
       - "3306:3306"
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
       MYSQL_DATABASE: wordpress
@@ -20,10 +19,9 @@ services:
     depends_on:
       - db
     volumes:
-      - "./app:/var/www/html/:cached"
+      - "./app:/var/www/html/"
     ports:
       - "80:80"
-    restart: always
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
